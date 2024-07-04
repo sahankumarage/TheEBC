@@ -17,7 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../../../src/assets/Images/kindpng_4958412.png";
 import Image from "../../../src/assets/Images/woman-home-using-laptop.jpg";
 
-const NavBar = () => {
+const NavBar = ({children}) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,7 +45,7 @@ const NavBar = () => {
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    if (scrollPosition > 50) {
+    if (scrollPosition > 100) {
       setIsScrolled(true);
     } else {
       setIsScrolled(false);
@@ -184,23 +184,9 @@ const NavBar = () => {
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         {drawerContent}
       </Drawer>
-      <Box
-      sx={{
-        width: "100%",
-        height:  { xs: "60vh", sm: "60vh%", md: "100vh" }, // Adjust height as needed
-        overflow: "hidden",
-        display: "flex",
-        justifyContent: "start",
-        alignItems: "start",
-        backgroundImage: `url(${Image})`,
-        backgroundSize: { xs: "200%", sm: "100%", md: "100%" },
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-       
-    </Box>
-      
+      <Box>
+        {children}
+      </Box>
     </>
   );
 };
