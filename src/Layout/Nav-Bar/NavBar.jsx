@@ -16,6 +16,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../../../src/assets/Images/kindpng_4958412.png";
 import Image from "../../../src/assets/Images/woman-home-using-laptop.jpg";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({children}) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -23,14 +24,33 @@ const NavBar = ({children}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const navigate = useNavigate();
 
   const menuItems = [
-    "Home",
-    "Courses",
-    "Student Life",
-    "Charity",
-    "About Us",
-    "Contact Us",
+    {
+      title: "Home",
+      value:"home",
+    },
+    {
+      title: "Courses",
+      value:"courses",
+    },
+    {
+      title: "Student Life",
+      value:"student-life",
+    },
+    {
+      title: "Charity",
+      value:"charity",
+    },
+    {
+      title: "About Us",
+      value:"about-us",
+    },
+    {
+      title: "Contact Us",
+      value:"contact-us",
+    },
   ];
 
   const toggleDrawer = (open) => (event) => {
@@ -57,11 +77,14 @@ const NavBar = ({children}) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleMenuItemClick = (item) => {
-    setSelectedItem(item);
+  const handleMenuItemClick = (title, value) => {
+    setSelectedItem(title);
     setDrawerOpen(false);
+    navigate(value);
+    
   };
 
+ 
   const drawerContent = (
     <List>
       <ListItem
@@ -79,7 +102,7 @@ const NavBar = ({children}) => {
             height: 40,
             width: "auto",
           }}
-          alt="Your logo"
+          alt="Logo"
           src={Logo}
         />
       </ListItem>
@@ -141,7 +164,7 @@ const NavBar = ({children}) => {
             {!isMobile &&
               menuItems.map((item) => (
                 <Button
-                  key={item}
+                  key={item?.title}
                   sx={{
                     marginLeft: "12px",
                     marginRight: "20px",
@@ -150,7 +173,7 @@ const NavBar = ({children}) => {
                     "&::after": {
                       content: '""',
                       position: "absolute",
-                      width: selectedItem === item ? "100%" : "0%",
+                      width: selectedItem === item?.title ? "100%" : "0%",
                       height: "2px",
                       bottom: 0,
                       left: 0,
@@ -162,9 +185,9 @@ const NavBar = ({children}) => {
                       backgroundColor: "transparent",
                     },
                   }}
-                  onClick={() => handleMenuItemClick(item)}
+                  onClick={() => handleMenuItemClick(item?.title, item?.value)}
                 >
-                  {item}
+                  {item?.title}
                 </Button>
               ))}
 

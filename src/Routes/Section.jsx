@@ -10,15 +10,21 @@ function Router() {
       path: "/",
       element: (
         <Layout>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense>
             <Outlet />
           </Suspense>
         </Layout>
       ),
-      children: [
+      children: [ 
         { path: "/", element: <Home /> },
         { path: "home", element: <Home /> },
-        { path: "*", element: <NotFound /> },
+        { path: "*", element: <Home /> },
+        { path: "courses" },
+        { path: "student-life" },
+        { path: "courses" },
+        { path: "charity" },
+        { path: "about-us" },
+        { path: "contact-us" },
       ],
     },
   ]);

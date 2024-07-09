@@ -1,60 +1,93 @@
-import { Box, Fade, Grid, Typography, keyframes } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import Carousel from "react-material-ui-carousel";
+import TypoVariant from "../../Hooks/TypoResponsive/UseTypoResponsive";
 import Image1 from "../../assets/Images/excited-teen-girl-showing-tablet-boyfriend.jpg";
 import Image2 from "../../assets/Images/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg";
-import ImageSlider from "../../Components/Image Slider/ImageSlider";
+import Image3 from "../../assets/Images/woman-home-using-laptop.jpg";
 
 const homeSlides = [
   { title: "Develop Your English Skill", img: Image1 },
   { title: "Expand Your Vocabulary", img: Image2 },
+  { title: "Expand Your English Speaking", img: Image3 },
 ];
 
 function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  useEffect(() => {
-    const changeSlide = () => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % homeSlides.length);
-        setIsTransitioning(false);
-      }, 500); // Half of the transition duration
-    };
-
-    const randomInterval = () =>
-      Math.floor(Math.random() * (7000 - 3000 + 1) + 3000); // Random time between 3-7 seconds
-
-    const timer = setInterval(changeSlide, randomInterval());
-
-    return () => clearInterval(timer);
-  }, []);
+  const variant = TypoVariant();
 
   return (
-    <Box sx={{ position: "relative", height: "100vh", overflow: "hidden" }}>
-      {homeSlides.map((slide, index) => (
-        <Fade
-          key={index}
-          in={index === currentSlide && !isTransitioning}
-          timeout={1000}
+    <>
+      <Box
+        sx={{
+          position: "relative",
+          height: { xs: "65vh", sm: "65vh", md: "85vh", lg: "88vh" },
+          overflow: "hidden",
+        }}
+      >
+        <Carousel
+          animation="fade"
+          interval={Math.floor(Math.random() * (7000 - 3000 + 1) + 3000)}
+          indicators={false}
         >
-          <Box
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              display: index === currentSlide ? "block" : "none",
-              transition: "all 1s ease-in-out",
-              transform: isTransitioning ? "scale(1)" : "scale(1)",
-            }}
-          >
-            <ImageSlider title={slide.title} img={slide.img} />
-          </Box>
-        </Fade>
-      ))}
-    </Box>
+          {homeSlides.map((slide, index) => (
+            <Box
+              key={index}
+              sx={{
+                position: "relative",
+                height: { xs: "65vh", sm: "65vh", md: "85vh", lg: "88vh" },
+                overflow: "hidden",
+              }}
+            >
+              <Box
+                sx={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                  backgroundImage: `
+                  linear-gradient(0deg, rgba(44, 62, 80, 0) 37%,#C5DEF4 99%),
+                  url(${slide.img})
+                `,
+                  backgroundSize: { xs: "200%", sm: "100%", md: "100%" },
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 3,
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Typography
+                  variant={variant}
+                  color="primary.lighter"
+                  sx={{
+                    textShadow: "6px 5px 12px rgba(0, 0, 1, 1)",
+                  }}
+                >
+                  {slide.title}
+                </Typography>
+              </Box>
+            </Box>
+          ))}
+        </Carousel>
+      </Box>
+
+      <Container >
+        <Grid mt={2} container>
+          <Grid item xs={12} display="flex" justifyContent="center">
+            <Typography textAlign="center" variant={variant}>
+              Welcome to The English Boot Camp!
+            </Typography>
+          </Grid>
+        </Grid>
+      </Container>
+    </>
   );
 }
 

@@ -7,12 +7,14 @@ import Image2 from "../src/assets/Images/free-time-students-bachelor-s-campus-li
 import { Box, Fade } from "@mui/material";
 import Router from "./Routes/Section";
 import { BrowserRouter } from "react-router-dom";
+import WhatsAppButton from "./Components/Whatsapp-Service/Whatsapp";
 
 function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Router />  
+        <WhatsAppButton />
+        <Router />
       </BrowserRouter>
     </ThemeProvider>
   );

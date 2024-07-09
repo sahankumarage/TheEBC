@@ -1,13 +1,15 @@
 import { Box, Grid, Typography, keyframes } from "@mui/material";
 import React from "react";
+import TypoVariant from '../../Hooks/TypoResponsive/UseTypoResponsive'
 
 function ImageSlider({title, img}) {
+  const variant = TypoVariant();
   return (
     <Box
       sx={{
         position: "relative",
         width: "100%",
-        height: { xs: "60vh", sm: "100vh", md: "80vh" },
+        height: { xs: "60vh", sm: "60vh", md: "80vh" },
         overflow: "hidden",
         display: "flex",
         justifyContent: "center",
@@ -25,14 +27,12 @@ function ImageSlider({title, img}) {
         `,
           backgroundSize: { xs: "200%", sm: "100%", md: "100%" },
           backgroundPosition: "center",
-          //clipPath: "polygon(0% 0%, 100% 0%, 43.6% 100%, 0% 100%)",
-          //   clipPath: "circle(65% at 0 85%)",
           backgroundRepeat: "no-repeat",
         }}
       />
 
       <Box
-        mb={30}
+        mt={15}
         p={3}
         display={"flex"}
         justifyContent={"center"}
@@ -43,7 +43,7 @@ function ImageSlider({title, img}) {
           sx={{
             textShadow: "6px 5px 12px rgba(0, 0, 1, 1)",
           }}
-          variant="h2"
+          variant={variant}
           color="primary.lighter"
         >
           {title}
