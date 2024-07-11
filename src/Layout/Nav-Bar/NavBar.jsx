@@ -14,11 +14,11 @@ import {
   Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Logo from "../../../src/assets/Images/kindpng_4958412.png";
+import Logo from "../../../src/assets/Images/english new.png";
 import Image from "../../../src/assets/Images/woman-home-using-laptop.jpg";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = ({children}) => {
+const NavBar = ({ children }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,27 +29,23 @@ const NavBar = ({children}) => {
   const menuItems = [
     {
       title: "Home",
-      value:"home",
+      value: "home",
     },
     {
       title: "Courses",
-      value:"courses",
+      value: "courses",
     },
     {
-      title: "Student Life",
-      value:"student-life",
-    },
-    {
-      title: "Charity",
-      value:"charity",
+      title: "Carrer",
+      value: "career",
     },
     {
       title: "About Us",
-      value:"about-us",
+      value: "about-us",
     },
     {
       title: "Contact Us",
-      value:"contact-us",
+      value: "contact-us",
     },
   ];
 
@@ -81,10 +77,8 @@ const NavBar = ({children}) => {
     setSelectedItem(title);
     setDrawerOpen(false);
     navigate(value);
-    
   };
 
- 
   const drawerContent = (
     <List>
       <ListItem
@@ -99,7 +93,7 @@ const NavBar = ({children}) => {
         <Box
           component="img"
           sx={{
-            height: 40,
+            height: "20",
             width: "auto",
           }}
           alt="Logo"
@@ -112,7 +106,7 @@ const NavBar = ({children}) => {
           sx={{ width: "200px" }}
           button
           key={text}
-          onClick={() => handleMenuItemClick(text)}
+          onClick={() => handleMenuItemClick(text?.title, text?.value)}
         >
           <ListItemText
             sx={{
@@ -123,7 +117,7 @@ const NavBar = ({children}) => {
               "&::after": {
                 content: '""',
                 position: "absolute",
-                width: selectedItem === text ? "100%" : "0%",
+                width: selectedItem === text?.title ? "5000000000000000000000000000000000000000000000000000.......................................................0............%" : "0%",
                 height: "2px",
                 bottom: 0,
                 left: 0,
@@ -131,7 +125,7 @@ const NavBar = ({children}) => {
                 transition: "width 0.3s ease-in-out",
               },
             }}
-            primary={text}
+            primary={text?.title}
           />
         </ListItem>
       ))}
@@ -153,7 +147,7 @@ const NavBar = ({children}) => {
           <Box
             component="img"
             sx={{
-              height: 40,
+              height: {xs:45, sm:45, md:60, lg:63},
               width: "auto",
             }}
             alt="Your logo"
@@ -207,9 +201,7 @@ const NavBar = ({children}) => {
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         {drawerContent}
       </Drawer>
-      <Box>
-        {children}
-      </Box>
+      <Box>{children}</Box>
     </>
   );
 };

@@ -5,6 +5,7 @@ import TypoVariant from "../../Hooks/TypoResponsive/UseTypoResponsive";
 import Image1 from "../../assets/Images/excited-teen-girl-showing-tablet-boyfriend.jpg";
 import Image2 from "../../assets/Images/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg";
 import Image3 from "../../assets/Images/woman-home-using-laptop.jpg";
+import ImageList from "../../Components/ImageList/ImageList";
 
 const homeSlides = [
   { title: "Develop Your English Skill", img: Image1 },
@@ -86,6 +87,17 @@ function Home() {
             </Typography>
           </Grid>
         </Grid>
+        <ImageList />
+        <Grid item xs={12} display="flex" justifyContent="center">
+            <Typography textAlign="center" variant={variant}>
+              Welcome to The English Boot Camp!
+            </Typography>
+          </Grid>
+          <Grid item xs={12} display="flex" justifyContent="center">
+            <Typography textAlign="center" variant={variant}>
+              Welcome to The English Boot Camp!
+            </Typography>
+          </Grid>
       </Container>
     </>
   );
