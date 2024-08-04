@@ -3,7 +3,7 @@ import { Fab } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const WhatsAppButton = () => {
-  const phoneNumber = '+94767138960'; 
+  const phoneNumber = '+94717442222'; 
 
   const handleWhatsAppClick = () => {
     const whatsappUrl = `https://wa.me/${phoneNumber}`;
