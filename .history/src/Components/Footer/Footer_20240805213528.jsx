@@ -30,7 +30,7 @@ const StyledFooter = styled("footer")({
 });
 
 const Logo = styled("img")({
-  height: "65px",
+  height: "60px",
   marginBottom: "0.7rem",
   padding: "3px",
 });

@@ -6,7 +6,7 @@ import YoutubeIcon from "@mui/icons-material/Youtube";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
-import MyLogo from "../../assets/Images/Logo White PNG.png";
+import MyLogo from "../../assets/Images/Logo white.jpg";
 
 const TikTokIcon = (props) => (
   <SvgIcon {...props}>
@@ -30,7 +30,7 @@ const StyledFooter = styled("footer")({
 });
 
 const Logo = styled("img")({
-  height: "65px",
+  height: "80px",
   marginBottom: "0.7rem",
   padding: "3px",
 });
