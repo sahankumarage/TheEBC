@@ -94,7 +94,7 @@ const Footer = () => {
                 <InstagramIcon />
               </IconButton>
               <IconButton color="inherit" aria-label="Instagram">
-                <TikTokIcon />
+                <InstagramIcon />
               </IconButton>
             </Box>
           </Grid>
@@ -105,10 +105,6 @@ const Footer = () => {
                 <Typography variant="body2">
                   123 Main St, City, Country
                 </Typography>
-              </ContactInfo>
-              <ContactInfo>
-                <PhoneIcon sx={{ marginRight: 1 }} />
-                <Typography variant="body2">+1 234 567 8900</Typography>
               </ContactInfo>
               <ContactInfo>
                 <PhoneIcon sx={{ marginRight: 1 }} />

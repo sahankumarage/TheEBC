@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Grid, Typography, IconButton, SvgIcon  } from "@mui/material";
+import { Box, Container, Grid, Typography, IconButton } from "@mui/material";
 import { styled } from "@mui/system";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YoutubeIcon from "@mui/icons-material/Youtube";
@@ -93,9 +93,6 @@ const Footer = () => {
               <IconButton color="inherit" aria-label="Instagram">
                 <InstagramIcon />
               </IconButton>
-              <IconButton color="inherit" aria-label="Instagram">
-                <TikTokIcon />
-              </IconButton>
             </Box>
           </Grid>
           <Grid item xs={5} sm={3}>
@@ -105,10 +102,6 @@ const Footer = () => {
                 <Typography variant="body2">
                   123 Main St, City, Country
                 </Typography>
-              </ContactInfo>
-              <ContactInfo>
-                <PhoneIcon sx={{ marginRight: 1 }} />
-                <Typography variant="body2">+1 234 567 8900</Typography>
               </ContactInfo>
               <ContactInfo>
                 <PhoneIcon sx={{ marginRight: 1 }} />

@@ -110,10 +110,6 @@ const Footer = () => {
                 <PhoneIcon sx={{ marginRight: 1 }} />
                 <Typography variant="body2">+1 234 567 8900</Typography>
               </ContactInfo>
-              <ContactInfo>
-                <PhoneIcon sx={{ marginRight: 1 }} />
-                <Typography variant="body2">+1 234 567 8900</Typography>
-              </ContactInfo>
             </Box>
           </Grid>
         </Grid>
