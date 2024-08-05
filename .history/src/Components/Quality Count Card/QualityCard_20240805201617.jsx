@@ -12,7 +12,7 @@ function QualityCard() {
     threshold: 0.1
   });
 
- 
+  
 
   useEffect(() => {
     if (inView) {
@@ -24,7 +24,7 @@ function QualityCard() {
     <Box
       sx={{ backgroundColor: "primary.lighter", borderRadius: "20px" }}
       p={4}
-     
+      data-aos="fade-up"
       ref={ref}
     >
       <Grid container spacing={2} display="flex" justifyContent="center">

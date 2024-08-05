@@ -270,7 +270,7 @@ function Home() {
         </Box>
         <Box mt={3} p={3}>
           <Grid container  display="flex" justifyContent="center">
-            <Grid item xs={12}>
+            <Grid item xs={12} >
               <Typography
                 color="black"
                 variant="h3"
@@ -317,7 +317,6 @@ function Home() {
           p={2}
         >
           <Grid
-          data-aos="fade-up"
             item
             xs={12}
             lg={6}
@@ -378,7 +377,6 @@ function Home() {
             </Box>
           </Grid>
           <Grid
-          data-aos="fade-up"
             item
             mt={2}
             xs={12}

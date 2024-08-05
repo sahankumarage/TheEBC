@@ -15,16 +15,16 @@ function BenifitsCard() {
   return (
     <Box display="flex" justifyContent="center">
       <Grid container spacing={10}>
-        <Grid  data-aos="fade-right" item xs={12} sm={12} md={6} lg={6}>
+        <Grid  data-aos="fade-up" item xs={12} sm={12} md={6} lg={6}>
           <Card img={Global} />
         </Grid>
-        <Grid data-aos="fade-right" item xs={12} sm={12} md={6} lg={6}>
+        <Grid item xs={12} sm={12} md={6} lg={6}>
           <Card img={Speak} />
         </Grid>
-        <Grid data-aos="fade-right" item xs={12} sm={12} md={6} lg={6}>
+        <Grid item xs={12} sm={12} md={6} lg={6}>
           <Card img={Travelling} />
         </Grid>
-        <Grid data-aos="fade-right" item xs={12} sm={12} md={6} lg={6}>
+        <Grid item xs={12} sm={12} md={6} lg={6}>
         <Card img={Friend} />
         </Grid>
       </Grid>

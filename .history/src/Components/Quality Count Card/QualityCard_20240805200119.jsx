@@ -1,54 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import CountUp from "react-countup";
-import { useInView } from 'react-intersection-observer';
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useSpring, animated } from "@react-spring/web";
 
-function QualityCard() {
-  const [startCount, setStartCount] = useState(false);
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1
+function AnimatedNumber({ number }) {
+  const { number: animatedNumber } = useSpring({
+    from: { number: 0 },
+    number,
+    delay: 200,
+    config: { duration: 2000 },
   });
 
- 
-
-  useEffect(() => {
-    if (inView) {
-      setStartCount(true);
-    }
-  }, [inView]);
-
   return (
-    <Box
-      sx={{ backgroundColor: "primary.lighter", borderRadius: "20px" }}
-      p={4}
-     
-      ref={ref}
-    >
+    <animated.div>
+      {animatedNumber.to((n) => n.toFixed(0))}+
+    </animated.div>
+  );
+}
+
+function QualityCard() {
+  return (
+    <Box sx={{ backgroundColor: "primary.lighter", borderRadius: "20px" }} p={4}>
       <Grid container spacing={2} display="flex" justifyContent="center">
         <Grid item xs={10} sm={8} md={4} lg={4} sx={{ mt: { sm: 3 } }}>
           <Typography variant="h2" color="primary.main">
-            {startCount && <CountUp end={10} duration={5} />}+
+            <AnimatedNumber number={10} />
           </Typography>
           <Divider sx={{ my: 1, width: "75%" }} />
           <Typography variant="h4" color="grey">
-            Lorem ipsum dolor sit .
+            Lorem ipsum dolor sit.
           </Typography>
         </Grid>
         <Grid item xs={10} sm={8} md={4} lg={4} sx={{ mt: { sm: 3 } }}>
           <Typography variant="h2" color="primary.main">
-            {startCount && <CountUp end={12} duration={5} />}+
+            <AnimatedNumber number={12} />
           </Typography>
           <Divider sx={{ my: 1, width: "75%" }} />
           <Typography variant="h4" color="grey">
-            Lorem ipsum dolor sit amet consectetur .
+            Lorem ipsum dolor sit amet consectetur.
           </Typography>
         </Grid>
         <Grid item xs={10} sm={8} md={4} lg={4} sx={{ mt: { sm: 3 } }}>
           <Typography variant="h2" color="primary.main">
-            {startCount && <CountUp end={120} duration={5} />}+
+            <AnimatedNumber number={120} />
           </Typography>
           <Divider sx={{ my: 1, width: "75%" }} />
           <Typography variant="h4" color="grey">

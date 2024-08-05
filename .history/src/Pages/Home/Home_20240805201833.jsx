@@ -66,6 +66,7 @@ function Home() {
                 }}
               />
               <Box
+              
                 sx={{
                   position: "absolute",
                   top: "40%",
@@ -78,7 +79,7 @@ function Home() {
                 }}
               >
                 <Grid container>
-                  <Grid item xs={4}  data-aos="fade-right">
+                  <Grid item xs={4}>
                     <Typography variant="h2" color="primary.lighter">
                       {slide.title}
                     </Typography>
@@ -103,7 +104,6 @@ function Home() {
           p={2}
         >
           <Grid
-           data-aos="fade-up"
             item
             xs={12}
             textAlign="start"
@@ -138,7 +138,6 @@ function Home() {
             </Typography>
           </Grid>
           <Grid
-          data-aos="fade-up"
             item
             mt={2}
             xs={12}
@@ -169,7 +168,6 @@ function Home() {
             </Typography>
           </Grid>
           <Grid
-          data-aos="fade-up"
             item
             xs={12}
             md={12}
@@ -224,7 +222,6 @@ function Home() {
         <Box mt={4}>
           <Grid container>
             <Grid
-             data-aos="fade-up"
               item
               xs={12}
               md={8}
@@ -263,13 +260,13 @@ function Home() {
                 </Box>{" "}
               </Typography>
             </Grid>
-            <Grid  data-aos="fade-up" item display="flex" justifyContent="center" xs={12} mt={8}>
+            <Grid item display="flex" justifyContent="center" xs={12} mt={8}>
               <QualityCard />
             </Grid>
           </Grid>
         </Box>
         <Box mt={3} p={3}>
-          <Grid container  display="flex" justifyContent="center">
+          <Grid container display="flex" justifyContent="center">
             <Grid item xs={12}>
               <Typography
                 color="black"
@@ -317,7 +314,6 @@ function Home() {
           p={2}
         >
           <Grid
-          data-aos="fade-up"
             item
             xs={12}
             lg={6}
@@ -378,7 +374,6 @@ function Home() {
             </Box>
           </Grid>
           <Grid
-          data-aos="fade-up"
             item
             mt={2}
             xs={12}

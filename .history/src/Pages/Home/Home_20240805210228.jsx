@@ -378,7 +378,6 @@ function Home() {
             </Box>
           </Grid>
           <Grid
-          data-aos="fade-up"
             item
             mt={2}
             xs={12}
