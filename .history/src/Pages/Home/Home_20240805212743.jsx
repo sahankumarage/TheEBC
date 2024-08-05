@@ -321,7 +321,7 @@ function Home() {
                       sm: "-50px",
                       xs: "-28px",
                     },
-                    bottom: "-15px",
+                    bottom: "-10px",
                     width: "100%",
                     height: "20px",
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 200 5' preserveAspectRatio='none'%3E%3Cpath d='M0,12 Q400,9 150,5 T200,9 T300,5' stroke='%230000FF' fill='none' stroke-width='1'/%3E%3C/svg%3E")`,

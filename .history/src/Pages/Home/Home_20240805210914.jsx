@@ -32,11 +32,13 @@ function Home() {
           height: { xs: "60vh", sm: "65vh", md: "75vh", lg: "80vh" },
           overflow: "hidden",
         }}
+        
       >
         <Carousel
           animation="fade"
           interval={Math.floor(Math.random() * (7000 - 3000 + 1) + 3000)}
           indicators={false}
+          
         >
           {homeSlides.map((slide, index) => (
             <Box
@@ -73,41 +75,11 @@ function Home() {
                   width: "100%",
                   textAlign: "start",
                   padding: "0 16px",
-                  "@keyframes lineLoop": {
-                    "0%": {
-                      transform: "scaleX(0)",
-                      transformOrigin: "left",
-                    },
-                    "50%": {
-                      transform: "scaleX(0.5)",
-                      transformOrigin: "left",
-                    },
-                    "100%": {
-                      transform: "scaleX(0)",
-                      transformOrigin: "right",
-                    },
-                  },
                 }}
               >
                 <Grid container>
-                  <Grid item xs={4} data-aos="fade-right">
-                    <Typography
-                      variant="h2"
-                      color="primary.lighter"
-                      sx={{
-                        position: "relative",
-                        "&::after": {
-                          content: '""',
-                          position: "absolute",
-                          left: 0,
-                          bottom: -8, // Adjust as needed to position the line
-                          width: "100%",
-                          height: 4, // Height of the line
-                          backgroundColor: "primary.main", // Color of the line
-                          animation: "lineLoop 2s infinite",
-                        },
-                      }}
-                    >
+                  <Grid item xs={4}  data-aos="fade-right">
+                    <Typography variant="h2" color="primary.lighter">
                       {slide.title}
                     </Typography>
                   </Grid>
@@ -131,7 +103,7 @@ function Home() {
           p={2}
         >
           <Grid
-            data-aos="fade-up"
+           data-aos="fade-up"
             item
             xs={12}
             textAlign="start"
@@ -148,7 +120,7 @@ function Home() {
                 "&::after": {
                   content: '""',
                   position: "absolute",
-                  left: { lg: "-70px", md: "-65px", sm: "-50px", xs: "-30px" },
+                  left: { lg: "-40px", md: "-65px", sm: "-50px", xs: "-30px" },
                   bottom: "-15px",
                   width: "100%",
                   height: "20px",
@@ -166,7 +138,7 @@ function Home() {
             </Typography>
           </Grid>
           <Grid
-            data-aos="fade-up"
+          data-aos="fade-up"
             item
             mt={2}
             xs={12}
@@ -197,7 +169,7 @@ function Home() {
             </Typography>
           </Grid>
           <Grid
-            data-aos="fade-up"
+          data-aos="fade-up"
             item
             xs={12}
             md={12}
@@ -252,7 +224,7 @@ function Home() {
         <Box mt={4}>
           <Grid container>
             <Grid
-              data-aos="fade-up"
+             data-aos="fade-up"
               item
               xs={12}
               md={8}
@@ -271,7 +243,7 @@ function Home() {
                     content: '""',
                     position: "absolute",
                     left: {
-                      lg: "-30px",
+                      lg: "-40px",
                       md: "-50px",
                       sm: "-30px",
                       xs: "-28px",
@@ -291,20 +263,13 @@ function Home() {
                 </Box>{" "}
               </Typography>
             </Grid>
-            <Grid
-              data-aos="fade-up"
-              item
-              display="flex"
-              justifyContent="center"
-              xs={12}
-              mt={8}
-            >
+            <Grid  data-aos="fade-up" item display="flex" justifyContent="center" xs={12} mt={8}>
               <QualityCard />
             </Grid>
           </Grid>
         </Box>
         <Box mt={3} p={3}>
-          <Grid container display="flex" justifyContent="center">
+          <Grid container  display="flex" justifyContent="center">
             <Grid item xs={12}>
               <Typography
                 color="black"
@@ -316,12 +281,12 @@ function Home() {
                     content: '""',
                     position: "absolute",
                     left: {
-                      lg: "-110px",
+                      lg: "-120px",
                       md: "-50px",
                       sm: "-50px",
                       xs: "-28px",
                     },
-                    bottom: "-15px",
+                    bottom: "-10px",
                     width: "100%",
                     height: "20px",
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 200 5' preserveAspectRatio='none'%3E%3Cpath d='M0,12 Q400,9 150,5 T200,9 T300,5' stroke='%230000FF' fill='none' stroke-width='1'/%3E%3C/svg%3E")`,
@@ -352,7 +317,7 @@ function Home() {
           p={2}
         >
           <Grid
-            data-aos="fade-up"
+          data-aos="fade-up"
             item
             xs={12}
             lg={6}
@@ -413,7 +378,7 @@ function Home() {
             </Box>
           </Grid>
           <Grid
-            data-aos="fade-up"
+          data-aos="fade-up"
             item
             mt={2}
             xs={12}
