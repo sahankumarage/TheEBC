@@ -53,15 +53,18 @@ const ContactInfo = styled(Box)({
 
 const Footer = () => {
   const handleMenuItemClick = (item) => {
+    // Define your navigation logic here
     console.log(`${item} clicked`);
+    // For example, you can use React Router to navigate to different pages
+    // history.push(`/${item.toLowerCase()}`);
   };
 
   const handleSocialMediaClick = (platform) => {
     const urls = {
       Facebook: "https://www.facebook.com/profile.php?id=61563005853057",
-      Youtube: "https://www.youtube.com/channel/UC2eL3udoPxkMM-6wlbNVFqw",
-      Instagram: "https://www.instagram.com/iei.education.lk?igsh=cTB0cndxcndhejlw",
-      TikTok: "https://www.tiktok.com/@ieiedu.lk?_t=8oceQqmX44I&_r=1",
+      Youtube: "https://www.youtube.com",
+      Instagram: "https://www.instagram.com",
+      TikTok: "https://www.tiktok.com",
     };
     window.open(urls[platform], "_blank");
   };
@@ -91,7 +94,6 @@ const Footer = () => {
                   key={item}
                   variant="body2"
                   onClick={() => handleMenuItemClick(item)}
-                  gutterBottom
                 >
                   {item}
                 </MenuItem>

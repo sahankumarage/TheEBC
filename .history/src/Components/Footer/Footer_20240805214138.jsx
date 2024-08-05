@@ -53,7 +53,10 @@ const ContactInfo = styled(Box)({
 
 const Footer = () => {
   const handleMenuItemClick = (item) => {
+    
     console.log(`${item} clicked`);
+    // For example, you can use React Router to navigate to different pages
+    // history.push(`/${item.toLowerCase()}`);
   };
 
   const handleSocialMediaClick = (platform) => {
@@ -91,7 +94,6 @@ const Footer = () => {
                   key={item}
                   variant="body2"
                   onClick={() => handleMenuItemClick(item)}
-                  gutterBottom
                 >
                   {item}
                 </MenuItem>

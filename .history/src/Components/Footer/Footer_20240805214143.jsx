@@ -91,7 +91,6 @@ const Footer = () => {
                   key={item}
                   variant="body2"
                   onClick={() => handleMenuItemClick(item)}
-                  gutterBottom
                 >
                   {item}
                 </MenuItem>

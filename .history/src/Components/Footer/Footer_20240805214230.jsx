@@ -85,13 +85,13 @@ const Footer = () => {
                 flexDirection: "column",
                 textAlign: { sm: "center", xs: "start" },
               }}
+              gutter
             >
               {menuItems.map((item) => (
                 <MenuItem
                   key={item}
                   variant="body2"
                   onClick={() => handleMenuItemClick(item)}
-                  gutterBottom
                 >
                   {item}
                 </MenuItem>
