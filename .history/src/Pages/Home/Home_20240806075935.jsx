@@ -16,7 +16,7 @@ const homeSlides = [
   { title: "International English Institute", img: Image1 },
   { title: "Expand Your Vocabulary", img: Image2 },
   { title: "Expand Your English Speaking", img: Image3 },
-  { title: "Expand Your English Speaking", img: Image4 },
+  { title: "Expand Your English Speaking", img: Image3 },
 ];
 
 function Home() {

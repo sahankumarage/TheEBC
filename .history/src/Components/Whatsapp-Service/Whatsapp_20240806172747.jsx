@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
     <Fab
       color="success"
       aria-label="whatsapp"
-      style={{ position: 'fixed', bottom: 40, right: 40, }}
+      style={{ position: 'fixed', bottom: 40, right: 40, siz }}
       onClick={handleWhatsAppClick}
     >
       <WhatsAppIcon />

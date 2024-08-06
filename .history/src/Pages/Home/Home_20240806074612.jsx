@@ -5,7 +5,6 @@ import TypoVariant from "../../Hooks/TypoResponsive/UseTypoResponsive";
 import Image1 from "../../assets/Images/excited-teen-girl-showing-tablet-boyfriend.jpg";
 import Image2 from "../../assets/Images/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg";
 import Image3 from "../../assets/Images/woman-home-using-laptop.jpg";
-import Image4 from "../../assets/Images/andrew-neel-QLqNalPe0RA-unsplash.jpg";
 import ImageList from "../../Components/ImageList/ImageList";
 import QualityCard from "../../Components/Quality Count Card/QualityCard";
 import BenifitsCard from "../../Components/Benefits Cards/BenifitsCard";
@@ -16,7 +15,6 @@ const homeSlides = [
   { title: "International English Institute", img: Image1 },
   { title: "Expand Your Vocabulary", img: Image2 },
   { title: "Expand Your English Speaking", img: Image3 },
-  { title: "Expand Your English Speaking", img: Image4 },
 ];
 
 function Home() {
@@ -92,9 +90,8 @@ function Home() {
                 }}
               >
                 <Grid container>
-                  <Grid item xs={4} data-aos="fade-right" >
+                  <Grid item xs={4} data-aos="fade-right">
                     <Typography
-                    
                       variant="h2"
                       color="primary.lighter"
                       sx={{

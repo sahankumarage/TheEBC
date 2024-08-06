@@ -135,7 +135,7 @@ const NavBar = ({ children }) => {
   return (
     <>
       <AppBar
-        position="fixed"
+        position="absolute"
         sx={{
           backdropFilter: "blur(10px)",
           transition: "backdrop-filter 0.3s ease-in-out",

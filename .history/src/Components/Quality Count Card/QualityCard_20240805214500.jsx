@@ -9,7 +9,7 @@ function QualityCard() {
   const [startCount, setStartCount] = useState(false);
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 1
+    threshold: 0.5
   });
 
  
