@@ -1,0 +1,63 @@
+import { Box, Grid, Typography } from "@mui/material";
+import React from "react";
+
+function CourseFee() {
+  return (
+    <Box>
+      <Grid
+        container
+        gap={1}
+        sx={{ backgroundColor: "#D9D9D9", borderRadius: 2 }}
+        p={3}
+      >
+        <Grid item xs={12} display="flex" justifyContent="center">
+          <Typography variant="h4" color="black" sx={{ fontWeight: 600 }}>
+            Course Fee
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          display="flex"
+          justifyContent="center"
+          sx={{ backgroundColor: "#D9D9D9" }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "primary.darker",
+              width: "40%",
+              display: "grid",
+              justifyContent: "center",
+              padding: 1,
+              borderRadius: 2,
+              gap: 1,
+            }}
+          >
+            {/* <Typography variant="h4" color="white" sx={{ fontWeight: 200,  textDecoration: 'line-through' }}>
+              Rs.79000/=
+            </Typography> */}
+            <Typography variant="h5" color="white" sx={{ fontWeight: 500 }}>
+              Rs.49000/=
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography variant="h6" color="grey">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+              maiores ipsa nobis nam nemo saepe delectus, voluptates laudantium
+              cum, assumenda porro? Saepe tempore sint animi. Distinctio quidem
+              dignissimos fuga libero. Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Rem maiores ipsa dignissimos fuga libero. animi.
+              Distinctio quidem dignissimos fuga libero. Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Rem maiores ipsa nobis nam nemo
+              saepe delectus, voluptates laudantium cum, assumenda porro? Saepe
+              tempore sint animi. Distinctio quidem dignissimos fuga libero.
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+}
+
+export default CourseFee;
