@@ -5,19 +5,19 @@ function CourseDetails({ img }) {
   return (
     <Box>
       <Grid container>
-        <Grid xs={12} md={4} item display="flex" justifyContent="center">
+        <Grid xs={12} item display="flex" justifyContent="center">
           <Box
             component="img"
             src={img}
             alt="img"
             sx={{
-              width: {xs:"100%", sm:"80%"},
+              width: ,
               borderRadius: 2,
               height: {
                 xs: "55vh",
                 sm: "35vh",
                 md: "45vh",
-                lg: "45vh",
+                lg: "60vh",
               },
               objectFit: "cover",
             }}
@@ -25,9 +25,8 @@ function CourseDetails({ img }) {
         </Grid>
         <Grid
           xs={12}
-          md={8}
           sx={{
-            mt: { xs: 5, sm:5, md:0 },
+            mt: { xs: 5 },
           }}
           item
           display="block"

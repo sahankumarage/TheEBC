@@ -10,7 +10,7 @@ function CourseFee() {
         sx={{ backgroundColor: "#D9D9D9", borderRadius: 2 }}
         p={3}
       >
-        <Grid item xs={12} display="flex" justifyContent="center">
+        <Grid item xs={12} md={4} display="flex" justifyContent="center">
           <Typography variant="h4" color="black" sx={{ fontWeight: 600 }}>
             Course Fee
           </Typography>
@@ -18,6 +18,7 @@ function CourseFee() {
         <Grid
           item
           xs={12}
+          md={8}
           display="flex"
           justifyContent="center"
           sx={{ backgroundColor: "#D9D9D9" }}

@@ -27,7 +27,7 @@ function CourseDetails({ img }) {
           xs={12}
           md={8}
           sx={{
-            mt: { xs: 5, sm:5, md:0 },
+            mt: { xs: 5, sm:5,  },
           }}
           item
           display="block"

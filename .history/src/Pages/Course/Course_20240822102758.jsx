@@ -8,7 +8,6 @@ import CourseDetails from "../../Components/CourseDetails/CourseDetails";
 import Image3 from "../../assets/Images/woman-home-using-laptop.jpg";
 import CourseFee from "../../Components/CourseFee/CourseFee";
 import Footer from "../../Components/Footer/Footer";
-import InstaFeed from "../../Components/Insta Feed/InstaFeed";
 
 const homeSlides = [{ title: "Course", img: Image1 }];
 
@@ -247,8 +246,8 @@ function Course() {
               </Carousel>
             </Grid>
           </Grid>
-          <Grid container mt={4} spacing={0}>
-            <Grid xs={6} sm={3} item>
+          <Grid container mt={4} spacing={4}>
+            <Grid xs={3} item>
               <Box
                 // sx={{ backgroundColor: "primary.light" }}
                 p={3}
@@ -257,18 +256,7 @@ function Course() {
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
-              <Box
-                display="flex"
-                justifyContent="center"
-                // sx={{ backgroundColor: "primary.light" }}
-                p={3}
-                borderRadius={2}
-              >
-                <CourseCard />
-              </Box>
-            </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={3} item>
               <Box
                 display="flex"
                 justifyContent="center"
@@ -279,7 +267,18 @@ function Course() {
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={3} item>
+              <Box
+                display="flex"
+                justifyContent="center"
+                // sx={{ backgroundColor: "primary.light" }}
+                p={3}
+                borderRadius={2}
+              >
+                <CourseCard />
+              </Box>
+            </Grid>
+            <Grid xs={3} item>
               <Box
                 display="flex"
                 justifyContent="center"
@@ -300,8 +299,7 @@ function Course() {
                     sx={{
                       color: "primary.dark", // Text color
                       borderColor: "primary.dark", // Border color
-                      padding: { xs: "12px 20px", sm: "12px 150px" }, // Increase padding for size
-                      width: "100%",
+                      padding: "12px 150px", // Increase padding for size
 
                       fontSize: "1.0rem",
                       "&:hover": {
@@ -352,18 +350,18 @@ function Course() {
               </Grid>
             </Grid>
           </Box>
-          <Box mt={12} >
-            <Grid container gap={5}  display='flex' justifyContent='center' >
-              <Grid xs={10} sm={12} item>
+          <Box mt={12}>
+            <Grid container gap={5}>
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
-              <Grid xs={10} sm={12} item>
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
-              <Grid xs={10} sm={12} item>
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
-              <Grid xs={10} sm={12} item>
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
             </Grid>
@@ -377,9 +375,17 @@ function Course() {
           </Box>
         </Container>
       </Box>
-     
       <Box mt={6}>
         <Footer />
+        <script
+          src="https://static.elfsight.com/platform/platform.js"
+          data-use-service-core
+          defer
+        ></script>
+        <div
+          class="elfsight-app-0c874b46-05f5-40bc-a611-a1079f4306d2"
+          data-elfsight-app-lazy
+        ></div>
       </Box>
     </>
   );

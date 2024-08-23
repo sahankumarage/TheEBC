@@ -25,7 +25,7 @@ function CourseFee() {
           <Box
             sx={{
               backgroundColor: "primary.darker",
-              width:{xs:"100%", sm:"80%", md:"40%"},
+              width: "40%",
               display: "grid",
               justifyContent: "center",
               padding: 1,

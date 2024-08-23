@@ -15,9 +15,9 @@ function CourseDetails({ img }) {
               borderRadius: 2,
               height: {
                 xs: "55vh",
-                sm: "35vh",
+                sm: "10vh",
                 md: "45vh",
-                lg: "45vh",
+                lg: "60vh",
               },
               objectFit: "cover",
             }}
@@ -27,7 +27,7 @@ function CourseDetails({ img }) {
           xs={12}
           md={8}
           sx={{
-            mt: { xs: 5, sm:5, md:0 },
+            mt: { xs: 5, sm:0 },
           }}
           item
           display="block"

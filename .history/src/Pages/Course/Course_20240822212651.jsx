@@ -10,6 +10,7 @@ import CourseFee from "../../Components/CourseFee/CourseFee";
 import Footer from "../../Components/Footer/Footer";
 import InstaFeed from "../../Components/Insta Feed/InstaFeed";
 
+
 const homeSlides = [{ title: "Course", img: Image1 }];
 
 function Course() {
@@ -247,43 +248,43 @@ function Course() {
               </Carousel>
             </Grid>
           </Grid>
-          <Grid container mt={4} spacing={0}>
-            <Grid xs={6} sm={3} item>
+          <Grid container mt={4} spacing={4}>
+            <Grid xs={6}  item>
               <Box
-                // sx={{ backgroundColor: "primary.light" }}
+               // sx={{ backgroundColor: "primary.light" }}
                 p={3}
                 borderRadius={2}
               >
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
               <Box
                 display="flex"
                 justifyContent="center"
-                // sx={{ backgroundColor: "primary.light" }}
+               // sx={{ backgroundColor: "primary.light" }}
                 p={3}
                 borderRadius={2}
               >
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
               <Box
                 display="flex"
                 justifyContent="center"
-                // sx={{ backgroundColor: "primary.light" }}
+               // sx={{ backgroundColor: "primary.light" }}
                 p={3}
                 borderRadius={2}
               >
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
               <Box
                 display="flex"
                 justifyContent="center"
-                // sx={{ backgroundColor: "primary.light" }}
+               // sx={{ backgroundColor: "primary.light" }}
                 p={3}
                 borderRadius={2}
               >
@@ -300,9 +301,9 @@ function Course() {
                     sx={{
                       color: "primary.dark", // Text color
                       borderColor: "primary.dark", // Border color
-                      padding: { xs: "12px 20px", sm: "12px 150px" }, // Increase padding for size
-                      width: "100%",
-
+                      padding: {xs:""}, // Increase padding for size
+                      width:"100%",
+                     
                       fontSize: "1.0rem",
                       "&:hover": {
                         borderColor: "primary.main", // Border color on hover
@@ -318,7 +319,7 @@ function Course() {
             </Grid>
           </Box>
           <Box mt={6}>
-            <Grid container display="flex" justifyContent="center">
+            <Grid container display='flex' justifyContent='center'>
               <Grid
                 xs={10}
                 p={3}
@@ -352,32 +353,34 @@ function Course() {
               </Grid>
             </Grid>
           </Box>
-          <Box mt={12} >
-            <Grid container gap={5}  display='flex' justifyContent='center' >
-              <Grid xs={10} sm={12} item>
-                <CourseDetails img={Image3} />
-              </Grid>
-              <Grid xs={10} sm={12} item>
-                <CourseDetails img={Image3} />
-              </Grid>
-              <Grid xs={10} sm={12} item>
-                <CourseDetails img={Image3} />
-              </Grid>
-              <Grid xs={10} sm={12} item>
-                <CourseDetails img={Image3} />
-              </Grid>
+          <Box mt={12}>
+            <Grid container gap={5}>
+                <Grid xs={12} item>
+                    <CourseDetails img={Image3} />
+                </Grid>
+                <Grid xs={12} item>
+                    <CourseDetails img={Image3} />
+                </Grid>
+                <Grid xs={12} item>
+                    <CourseDetails img={Image3} />
+                </Grid>
+                <Grid xs={12} item>
+                    <CourseDetails img={Image3} />
+                </Grid>
             </Grid>
           </Box>
-          <Box mt={6}>
-            <Grid container display="flex" justifyContent="center">
-              <Grid xs={9} item>
-                <CourseFee />
-              </Grid>
+          <Box mt={6} >
+            <Grid container display='flex' justifyContent='center' >
+                <Grid xs={9} item>
+                   <CourseFee />
+                </Grid>
             </Grid>
           </Box>
         </Container>
       </Box>
-     
+      <Box>
+        <InstaFeed />
+      </Box>
       <Box mt={6}>
         <Footer />
       </Box>

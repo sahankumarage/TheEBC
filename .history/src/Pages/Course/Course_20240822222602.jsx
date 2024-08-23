@@ -268,7 +268,7 @@ function Course() {
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
               <Box
                 display="flex"
                 justifyContent="center"
@@ -279,7 +279,7 @@ function Course() {
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
               <Box
                 display="flex"
                 justifyContent="center"

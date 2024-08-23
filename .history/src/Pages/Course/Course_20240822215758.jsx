@@ -248,7 +248,7 @@ function Course() {
             </Grid>
           </Grid>
           <Grid container mt={4} spacing={0}>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
               <Box
                 // sx={{ backgroundColor: "primary.light" }}
                 p={3}
@@ -257,18 +257,7 @@ function Course() {
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
-              <Box
-                display="flex"
-                justifyContent="center"
-                // sx={{ backgroundColor: "primary.light" }}
-                p={3}
-                borderRadius={2}
-              >
-                <CourseCard />
-              </Box>
-            </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
               <Box
                 display="flex"
                 justifyContent="center"
@@ -279,7 +268,18 @@ function Course() {
                 <CourseCard />
               </Box>
             </Grid>
-            <Grid xs={6} sm={3} item>
+            <Grid xs={6} item>
+              <Box
+                display="flex"
+                justifyContent="center"
+                // sx={{ backgroundColor: "primary.light" }}
+                p={3}
+                borderRadius={2}
+              >
+                <CourseCard />
+              </Box>
+            </Grid>
+            <Grid xs={6} item>
               <Box
                 display="flex"
                 justifyContent="center"
@@ -336,7 +336,7 @@ function Course() {
                     variant="h7"
                     sx={{ fontWeight: "600" }}
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+                    Loremdd ipsum dolor sit amet consectetur adipisicing elit. Rem
                     maiores ipsa nobis nam nemo saepe delectus, voluptates
                     laudantium cum, assumenda porro? Saepe tempore sint animi.
                     Distinctio quidem dignissimos fuga libero. Lorem ipsum dolor
@@ -353,17 +353,17 @@ function Course() {
             </Grid>
           </Box>
           <Box mt={12} >
-            <Grid container gap={5}  display='flex' justifyContent='center' >
-              <Grid xs={10} sm={12} item>
+            <Grid container gap={5} >
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
-              <Grid xs={10} sm={12} item>
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
-              <Grid xs={10} sm={12} item>
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
-              <Grid xs={10} sm={12} item>
+              <Grid xs={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
             </Grid>
@@ -377,7 +377,9 @@ function Course() {
           </Box>
         </Container>
       </Box>
-     
+      <Box>
+        <InstaFeed />
+      </Box>
       <Box mt={6}>
         <Footer />
       </Box>
