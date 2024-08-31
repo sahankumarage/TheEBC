@@ -21,6 +21,7 @@ function CourseFee() {
           display="flex"
           justifyContent="center"
           sx={{ backgroundColor: "#D9D9D9" }}
+          gap={4}
         >
           <Box
             sx={{
@@ -37,7 +38,25 @@ function CourseFee() {
               Rs.79000/=
             </Typography> */}
             <Typography variant="h5" color="white" sx={{ fontWeight: 500 }}>
-              Rs.49000/=
+              Rs.49000/= × 3
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              backgroundColor: "primary.darker",
+              width:{xs:"100%", sm:"80%", md:"40%"},
+              display: "grid",
+              justifyContent: "center",
+              padding: 1,
+              borderRadius: 2,
+              gap: 1,
+            }}
+          >
+            {/* <Typography variant="h4" color="white" sx={{ fontWeight: 200,  textDecoration: 'line-through' }}>
+              Rs.79000/=
+            </Typography> */}
+            <Typography variant="h5" color="white" sx={{ fontWeight: 500 }}>
+             Monthly Installemt × 3
             </Typography>
           </Box>
         </Grid>

@@ -4,6 +4,8 @@ import Layout from "../Layout/Nav-Bar/NavBar";
 import Home from "../Pages/Home/Home";
 import NotFound from "../Pages/404 Error/NotFound";
 import Course from "../Pages/Course/Course";
+import AboutUs from "../Pages/About us/AboutUs";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 function Router() {
   const routes = useRoutes([
@@ -24,8 +26,8 @@ function Router() {
         { path: "student-life" },
         { path: "courses" },
         { path: "charity" },
-        { path: "about-us" },
-        { path: "contact-us" },
+        { path: "about-us", element: <AboutUs />},
+        { path: "contact-us", element: <ContactUs />},
       ],
     },
   ]);

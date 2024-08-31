@@ -2,6 +2,10 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 import Image1 from "../../assets/Images/tim-mossholder-hOF1bWoet_Q-unsplash.jpg";
+import duration from "../../assets/Icon/mortarboard.png";
+import Entry from "../../assets/Icon/history.png";
+import location from "../../assets/Icon/location-pin.png";
+import calender from "../../assets/Icon/calendar.png";
 import Aos from "aos";
 import CourseCard from "../../Components/Course Card/CourseCard";
 import CourseDetails from "../../Components/CourseDetails/CourseDetails";
@@ -254,7 +258,7 @@ function Course() {
                 p={3}
                 borderRadius={2}
               >
-                <CourseCard />
+                <CourseCard img={Entry} title={"Entry"} details={"Hello"} />
               </Box>
             </Grid>
             <Grid xs={6} sm={3} item>
@@ -265,7 +269,7 @@ function Course() {
                 p={3}
                 borderRadius={2}
               >
-                <CourseCard />
+                <CourseCard img={duration} title={"Entry"} details={"Hello"} />
               </Box>
             </Grid>
             <Grid xs={6} sm={3} item>
@@ -276,7 +280,7 @@ function Course() {
                 p={3}
                 borderRadius={2}
               >
-                <CourseCard />
+                <CourseCard img={location} title={"Entry"} details={"Hello"} />
               </Box>
             </Grid>
             <Grid xs={6} sm={3} item>
@@ -287,7 +291,7 @@ function Course() {
                 p={3}
                 borderRadius={2}
               >
-                <CourseCard />
+                <CourseCard img={calender} title={"Entry"} details={"Hello"} />
               </Box>
             </Grid>
           </Grid>
@@ -352,8 +356,8 @@ function Course() {
               </Grid>
             </Grid>
           </Box>
-          <Box mt={12} >
-            <Grid container gap={5}  display='flex' justifyContent='center' >
+          <Box mt={12}>
+            <Grid container gap={5} display="flex" justifyContent="center">
               <Grid xs={10} sm={12} item>
                 <CourseDetails img={Image3} />
               </Grid>
@@ -377,7 +381,7 @@ function Course() {
           </Box>
         </Container>
       </Box>
-     
+
       <Box mt={6}>
         <Footer />
       </Box>

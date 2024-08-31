@@ -6,7 +6,7 @@ import Friend from "../../assets/Icon/friends.png";
 import React, { useEffect } from "react";
 import Aos from "aos";
 
-function CourseCard() {
+function CourseCard({img, title, details}) {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
@@ -15,14 +15,14 @@ function CourseCard() {
     <Box display="flex" justifyContent="center">
       <Grid container>
         <Grid data-aos="fade-right" item>
-          <Card img={Global} />
+          <Card img={img} title={title} details={details} />
         </Grid>
       </Grid>
     </Box>
   );
 }
 
-function Card({ img }) {
+function Card({ img, title, details }) {
   return (
     <Box>
       <Grid container>
@@ -40,11 +40,10 @@ function Card({ img }) {
       </Grid>
       <Box mt={3}>
         <Typography textAlign='center'   variant="h5" color="black" sx={{ fontWeight: 600 }}>
-          Duration
+          {title}
         </Typography>
         <Typography textAlign='center'>
-            Learn English from the comfort of your home. Discover new ways to
-            communicate, learn, and grow.
+           {details}
         </Typography>
       </Box>
     </Box>

@@ -16,8 +16,8 @@ function CourseDetails({ img }) {
               height: {
                 xs: "55vh",
                 sm: "35vh",
-                md: "45vh",
-                lg: "45vh",
+                md: "35vh",
+                lg: "35vh",
               },
               objectFit: "cover",
             }}

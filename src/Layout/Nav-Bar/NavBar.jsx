@@ -36,8 +36,8 @@ const NavBar = ({ children }) => {
       value: "courses",
     },
     {
-      title: "Student Life",
-      value: "career",
+      title: "Community Projects",
+      value: "community-projects",
     },
     {
       title: "About Us",
@@ -77,6 +77,7 @@ const NavBar = ({ children }) => {
     setSelectedItem(title);
     setDrawerOpen(false);
     navigate(value);
+    window.scrollTo(0, 0); 
   };
 
   const drawerContent = (

@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import TypoVariant from "../../Hooks/TypoResponsive/UseTypoResponsive";
-import Image1 from "../../assets/Images/excited-teen-girl-showing-tablet-boyfriend.jpg";
-import Image2 from "../../assets/Images/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg";
-import Image3 from "../../assets/Images/woman-home-using-laptop.jpg";
-import Image4 from "../../assets/Images/andrew-neel-QLqNalPe0RA-unsplash.jpg";
+import Image1 from "../../assets/Images/Desktop - 1.png";
+import Image2 from "../../assets/Images/Pool Table Girls.png";
+import Image3 from "../../assets/Images/Coffe Shop.png";
+import Image4 from "../../assets/Images/Beach Couple.png";
 import ImageList from "../../Components/ImageList/ImageList";
 import QualityCard from "../../Components/Quality Count Card/QualityCard";
 import BenifitsCard from "../../Components/Benefits Cards/BenifitsCard";
 import Footer from "../../Components/Footer/Footer";
+
 import Aos from "aos";
 
 const homeSlides = [
@@ -35,11 +36,7 @@ function Home() {
           overflow: "hidden",
         }}
       >
-        <Carousel
-          animation="fade"
-          interval={5000}
-          indicators={false}
-        >
+        <Carousel animation="fade" interval={5000} indicators={false}>
           {homeSlides.map((slide, index) => (
             <Box
               key={index}
@@ -92,9 +89,8 @@ function Home() {
                 }}
               >
                 <Grid container>
-                  <Grid item xs={4} data-aos="fade-right" >
+                  <Grid item xs={4} data-aos="fade-right">
                     <Typography
-                    
                       variant="h2"
                       color="primary.lighter"
                       sx={{
@@ -182,21 +178,17 @@ function Home() {
             display="flex"
           >
             <Typography color="#757575" variant="h5" sx={{ fontWeight: "600" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-              maiores ipsa nobis nam nemo saepe delectus, voluptates laudantium
-              cum, assumenda porro? Saepe tempore sint animi. Distinctio quidem
-              dignissimos fuga libero. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Rem maiores ipsa nobis nam nemo saepe delectus,
-              voluptates laudantium cum, assumenda porro? Saepe tempore sint
-              animi. Distinctio quidem dignissimos fuga libero. Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Rem maiores ipsa
-              nobis nam nemo saepe delectus, voluptates laudantium cum,
-              assumenda porro? Saepe tempore sint animi. Distinctio quidem
-              dignissimos fuga libero. animi. Distinctio quidem dignissimos fuga
-              libero. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Rem maiores ipsa nobis nam nemo saepe delectus, voluptates
-              laudantium cum, assumenda porro? Saepe tempore sint animi.
-              Distinctio quidem dignissimos fuga libero.
+              Our goal is to help Sri Lankan students improve their English
+              skills. English is essential for success, but many students find
+              it difficult to master, even after years of study. This is often
+              because they don’t get enough practice or aren’t in the right
+              environment to learn. We’ve created a course that focuses on
+              understanding and thinking in English, rather than just speaking,
+              reading, or writing. This makes us different from other programs.
+              Our young, international instructors bring fresh ideas and help
+              students connect with the world. Through our course, students will
+              not only become better at English but also gain confidence, create
+              new opportunities, and build global connections.
             </Typography>
           </Grid>
           <Grid
@@ -242,7 +234,7 @@ function Home() {
                         xs: "55vh",
                         sm: "35vh",
                         md: "45vh",
-                        lg: "60vh",
+                        lg: "40vh",
                       },
                       objectFit: "cover",
                     }}
@@ -252,14 +244,14 @@ function Home() {
             </Carousel>
           </Grid>
         </Grid>
-        <Box mt={4}>
+        <Box mt={10}>
           <Grid container>
             <Grid
               data-aos="fade-up"
               item
               xs={12}
               md={8}
-              lg={4}
+              lg={3}
               sm={8}
               display="flex"
               justifyContent="center"
@@ -274,7 +266,7 @@ function Home() {
                     content: '""',
                     position: "absolute",
                     left: {
-                      lg: "-30px",
+                      lg: "-20px",
                       md: "-50px",
                       sm: "-30px",
                       xs: "-28px",
@@ -288,9 +280,9 @@ function Home() {
                   },
                 }}
               >
-                Lorem ipsum dolor sit amet <br />{" "}
+                Our{""}
                 <Box component="span" sx={{ color: "primary.main" }}>
-                  consectetur. sahan
+                  &nbsp; Achievements
                 </Box>{" "}
               </Typography>
             </Grid>
@@ -306,7 +298,7 @@ function Home() {
             </Grid>
           </Grid>
         </Box>
-        <Box mt={3} p={3}>
+        <Box mt={10} p={3}>
           <Grid container display="flex" justifyContent="center">
             <Grid item xs={12}>
               <Typography
@@ -319,13 +311,13 @@ function Home() {
                     content: '""',
                     position: "absolute",
                     left: {
-                      lg: "-110px",
+                      lg: "-50px",
                       md: "-50px",
                       sm: "-50px",
                       xs: "-28px",
                     },
                     bottom: "-15px",
-                    width: "100%",
+                    width: "50%",
                     height: "20px",
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 200 5' preserveAspectRatio='none'%3E%3Cpath d='M0,12 Q400,9 150,5 T200,9 T300,5' stroke='%230000FF' fill='none' stroke-width='1'/%3E%3C/svg%3E")`,
                     backgroundRepeat: "no-repeat",
@@ -333,9 +325,9 @@ function Home() {
                   },
                 }}
               >
-                Lorem ipsum dolor sit amet{" "}
+                What You’ll{" "}
                 <Box component="span" sx={{ color: "primary.main" }}>
-                  consectetur. Semper
+                  Achieve with Us
                 </Box>{" "}
               </Typography>
             </Grid>
@@ -405,7 +397,7 @@ function Home() {
                           xs: "60vh",
                           sm: "35vh",
                           md: "45vh",
-                          lg: "60vh",
+                          lg: "40vh",
                         },
                         objectFit: "cover",
                       }}
@@ -427,7 +419,7 @@ function Home() {
             textAlign="start"
             display="flex"
             flexDirection="column"
-            justifyContent="space-between"
+            justifyContent="start"
           >
             <Box mb={3}>
               <Typography
@@ -438,29 +430,22 @@ function Home() {
                   position: "relative",
                 }}
               >
-                Lorem ipsum dolor sit amet consectetur{" "}
+                Why is English{" "}
                 <Box component="span" sx={{ color: "primary.main" }}>
-                  consectetur adith
+                  Important?
                 </Box>{" "}
-                Institute{" "}
               </Typography>
             </Box>
             <Typography color="#757575" variant="h5" sx={{ fontWeight: "600" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-              maiores ipsa nobis nam nemo saepe delectus, voluptates laudantium
-              cum, assumenda porro? Saepe tempore sint animi. Distinctio quidem
-              dignissimos fuga libero. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Rem maiores ipsa nobis nam nemo saepe delectus,
-              voluptates laudantium cum, assumenda porro? Saepe tempore sint
-              animi. Distinctio quidem dignissimos fuga libero. Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Rem maiores ipsa
-              nobis nam nemo saepe delectus, voluptates laudantium cum,
-              assumenda porro? Saepe tempore sint animi. Distinctio quidem
-              dignissimos fuga libero. animi. Distinctio quidem dignissimos fuga
-              libero. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Rem maiores ipsa nobis nam nemo saepe delectus, voluptates
-              laudantium cum, assumenda porro? Saepe tempore sint animi.
-              Distinctio quidem dignissimos fuga libero.
+              English is a global language that opens doors to countless
+              opportunities in education, careers, and communication worldwide.
+              For Sri Lankan students, mastering English is essential not only
+              for academic success but also for building confidence in a world
+              where English is the bridge for connecting with people from
+              different countries. By learning English, students in Sri Lanka
+              can access a wealth of knowledge, engage in international
+              dialogues, and pursue global careers, helping them to succeed both
+              locally and globally.
             </Typography>
           </Grid>
         </Grid>
