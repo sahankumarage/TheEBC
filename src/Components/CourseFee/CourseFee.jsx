@@ -31,35 +31,16 @@ function CourseFee() {
               width: { xs: "100%", sm: "80%", md: "40%" },
               display: "grid",
               justifyContent: "center",
-              padding: 1,
-              borderRadius: 2,
-              gap: 1,
-            }}
-          >
-            {/* <Typography variant="h4" color="white" sx={{ fontWeight: 200,  textDecoration: 'line-through' }}>
-              Rs.79000/=
-            </Typography> */}
-            <Typography variant="h5" color="white" sx={{ fontWeight: 500 }}>
-              Rs.49000/=
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              backgroundColor: "primary.darker",
-              width: { xs: "100%", sm: "80%", md: "40%" },
-              display: "grid",
-              justifyContent: "center",
+              textAlign:'center',
               padding: 1,
               borderRadius: 2,
               gap: 1,
               mt:{xs:1, sm:0}
             }}
           >
-            {/* <Typography variant="h4" color="white" sx={{ fontWeight: 200,  textDecoration: 'line-through' }}>
-              Rs.79000/=
-            </Typography> */}
+           
             <Typography variant="h5" color="white" sx={{ fontWeight: 500 }}>
-              Monthly Installments × 2 
+              6000 LKR
             </Typography>
           </Box>
         </Grid>
