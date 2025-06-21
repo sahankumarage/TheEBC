@@ -1,33 +1,24 @@
 import React, { lazy, Suspense } from "react";
 import { Outlet, useRoutes } from "react-router-dom";
-import Layout from "../Layout/Nav-Bar/NavBar";
-import Home from "../Pages/Home/Home";
-import NotFound from "../Pages/404 Error/NotFound";
-import Course from "../Pages/Course/Course";
-import AboutUs from "../Pages/About us/AboutUs";
-import ContactUs from "../Pages/ContactUs/ContactUs";
+import Layout from "../Layout/Nav-Bar/Sidebar.jsx";
+import Home from "../Pages/Home/Home.jsx";
+import Dashboard from "../Pages/Dashboard/Dashboard.jsx";
 
 function Router() {
   const routes = useRoutes([
     {
       path: "/",
       element: (
-        <Layout>
+        
           <Suspense>
             <Outlet />
           </Suspense>
-        </Layout>
+       
       ),
       children: [ 
         { path: "/", element: <Home /> },
-        { path: "home", element: <Home /> },
-        { path: "*", element: <Home /> },
-        { path: "courses", element: <Course /> },
-        { path: "student-life" },
-        { path: "courses" },
-        { path: "charity" },
-        { path: "about-us", element: <AboutUs />},
-        { path: "contact-us", element: <ContactUs />},
+        { path: "/batch-transfer", element: <Dashboard /> },
+        
       ],
     },
   ]);

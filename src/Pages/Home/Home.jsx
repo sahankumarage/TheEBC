@@ -1,471 +1,284 @@
-import React, { useEffect } from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
-import Carousel from "react-material-ui-carousel";
-import TypoVariant from "../../Hooks/TypoResponsive/UseTypoResponsive";
-import Image1 from "../../assets/Images/Desktop - 1.png";
-import Image2 from "../../assets/Images/Pool Table Girls.png";
-import Image3 from "../../assets/Images/Coffe Shop.png";
-import Image4 from "../../assets/Images/Beach Couple.png";
-import Sub1 from "../../assets/Images/S1.png";
-import Sub2 from "../../assets/Images/s2.png";
-import Sub3 from "../../assets/Images/s3.png";
-import Sub4 from "../../assets/Images/s4.png";
-import ImageList from "../../Components/ImageList/ImageList";
-import QualityCard from "../../Components/Quality Count Card/QualityCard";
-import BenifitsCard from "../../Components/Benefits Cards/BenifitsCard";
-import Footer from "../../Components/Footer/Footer";
+import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+import {
+  Container, TextField, Button, Typography, Box, CircularProgress, Alert
+} from '@mui/material';
+import MobiTokenABI from '../../abis/MobiTokenABI.json'; // ✅ Ensure correct path
 
-import Aos from "aos";
+const tokenAddress = "0x296Cb9090Eb49f259E21CFD8eD90F2cf461555e8";
 
-const homeSlides = [
-  { title: "International English Institute", img: Image1 },
-  { title: "Expand Your Vocabulary", img: Image2 },
-  { title: "Expand Your English Speaking", img: Image3 },
-  { title: "Expand Your English Speaking", img: Image4 },
-];
+const TokenTransfer = () => {
+  const [recipient, setRecipient] = useState("");
+  const [amount, setAmount] = useState("");
+  const [txHash, setTxHash] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [balance, setBalance] = useState("");
+  const [signerAddress, setSignerAddress] = useState("");
 
-const HomeIntro = [
-  {img: Sub1 },
-  {img: Sub2 },
-  {img: Sub3 },
-  {img: Sub4 },
-];
+  const fetchBalance = async (provider, contract, address) => {
+    try {
+      const rawBalance = await contract.balanceOf(address);
+      const readableBalance = ethers.formatUnits(rawBalance, 18);
+      setBalance(readableBalance);
+    } catch (err) {
+      console.error("Error fetching balance:", err);
+    }
+  };
 
-function Home() {
-  const variant = TypoVariant();
+  const handleTransfer = async () => {
+    try {
+      setLoading(true);
+      setError("");
+      setTxHash("");
+
+      if (!window.ethereum) throw new Error("MetaMask is not installed.");
+      
+      // Request accounts with timeout handling
+      try {
+        await Promise.race([
+          window.ethereum.request({ method: 'eth_requestAccounts' }),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error("MetaMask connection timed out")), 15000)
+          )
+        ]);
+      } catch (error) {
+        throw new Error(`Wallet connection failed: ${error.message}`);
+      }
+
+      // Create provider with error handling
+      let provider;
+      try {
+        provider = new ethers.BrowserProvider(window.ethereum, "any");
+      } catch (error) {
+        throw new Error(`Provider creation failed: ${error.message}`);
+      }
+      
+      // Get signer with error handling
+      let signer;
+      let userAddress;
+      try {
+        signer = await provider.getSigner();
+        userAddress = await signer.getAddress();
+        setSignerAddress(userAddress);
+      } catch (error) {
+        throw new Error(`Failed to get signer: ${error.message}`);
+      }
+
+      const contract = new ethers.Contract(tokenAddress, MobiTokenABI.abi, signer);
+
+      const amountInWei = ethers.parseUnits(amount, 18);
+      
+      // Try using a different approach with direct transaction override
+      let tx;
+      try {
+        // First approach: Using direct method with overrides
+        tx = await contract.safeTransfer(recipient, amountInWei);
+        setTxHash(tx.hash);
+        console.log("Transaction sent using method 1:", tx);
+      } catch (txError) {
+        console.log("Method 1 failed, trying alternative approach:", txError);
+        
+        // Get network to set proper gas settings
+        const network = await provider.getNetwork();
+        const chainId = network.chainId;
+        
+        // Get current gas price with 10% buffer
+        const feeData = await provider.getFeeData();
+        const gasPrice = feeData.gasPrice ? 
+          BigInt(Math.floor(Number(feeData.gasPrice) * 1.1)) : 
+          undefined;
+        
+        // Prepare the transaction data manually
+        const contractInterface = new ethers.Interface(MobiTokenABI.abi);
+        const data = contractInterface.encodeFunctionData("safeTransfer", [recipient, amountInWei]);
+        
+        // Send transaction with manual parameters
+        const txRequest = {
+          to: tokenAddress,
+          from: userAddress,
+          data: data,
+          chainId: chainId,
+        };
+        
+        // Add gas price if available
+        if (gasPrice) {
+          txRequest.gasPrice = gasPrice;
+        }
+        
+        // Estimate gas with buffer
+        try {
+          const estimatedGas = await provider.estimateGas(txRequest);
+          txRequest.gasLimit = BigInt(Math.floor(Number(estimatedGas) * 1.2));
+        } catch (gasError) {
+          console.log("Gas estimation failed, using default:", gasError);
+          txRequest.gasLimit = BigInt(100000); // Default gas limit
+        }
+        
+        // Send the transaction
+        tx = await signer.sendTransaction(txRequest);
+        setTxHash(tx.hash);
+        console.log("Transaction sent using method 2:", tx);
+      }
+      
+      setTxHash(tx.hash);
+
+      // Wait for transaction confirmation with timeout
+      try {
+        const receipt = await Promise.race([
+          tx.wait(1), // Wait for 1 confirmation
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error("Transaction confirmation timed out")), 60000)
+          )
+        ]);
+        console.log("Transaction confirmed:", receipt);
+        
+        // Refresh balance after successful transaction
+        await fetchBalance(provider, contract, userAddress);
+        alert("Transfer successful!");
+      } catch (waitError) {
+        console.error("Transaction may not be confirmed:", waitError);
+        alert("Transaction sent, but confirmation is pending. Check your wallet for status.");
+      }
+    } catch (err) {
+      console.error("Transfer error:", err);
+      
+      // Extract more useful error information
+      let errorMessage = "Transaction failed";
+      
+      // Check for different error types and extract meaningful information
+      if (err.code === 'ACTION_REJECTED') {
+        errorMessage = "Transaction rejected by user";
+      } else if (err.code === 4001) {
+        errorMessage = "Transaction cancelled by user";
+      } else if (err.error && err.error.message) {
+        errorMessage = err.error.message;
+      } else if (err.data && err.data.message) {
+        errorMessage = err.data.message;
+      } else if (err.message) {
+        // Parse JSON RPC errors
+        if (err.message.includes('Internal JSON-RPC error')) {
+          try {
+            // Try to extract the actual error from the JSON-RPC error
+            const match = err.message.match(/\{.*\}/);
+            if (match) {
+              const parsed = JSON.parse(match[0]);
+              errorMessage = parsed.error?.message || parsed.message || "RPC Error";
+            } else {
+              errorMessage = "RPC Error: " + err.message.substring(0, 100);
+            }
+          } catch (parseError) {
+            errorMessage = "Transaction failed: " + err.message.substring(0, 100);
+          }
+        } else {
+          errorMessage = err.message;
+        }
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    Aos.init({ duration: 2000 });
+    const init = async () => {
+      try {
+        if (!window.ethereum) return;
+
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length === 0) return; // No connected accounts
+        
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+        setSignerAddress(address);
+
+        const contract = new ethers.Contract(tokenAddress, MobiTokenABI.abi, provider);
+        await fetchBalance(provider, contract, address);
+        
+        // Set up event listeners for wallet changes
+        window.ethereum.on('accountsChanged', (accounts) => {
+          window.location.reload();
+        });
+        
+        window.ethereum.on('chainChanged', () => {
+          window.location.reload();
+        });
+      } catch (err) {
+        console.error("Init error:", err);
+      }
+    };
+
+    init();
+    
+    // Clean up event listeners
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener('accountsChanged', () => {});
+        window.ethereum.removeListener('chainChanged', () => {});
+      }
+    };
   }, []);
 
   return (
-    <>
-      <Box
-        sx={{
-          position: "relative",
-          height: { xs: "60vh", sm: "65vh", md: "75vh", lg: "80vh" },
-          overflow: "hidden",
-        }}
-      >
-        <Carousel animation="fade" interval={5000} indicators={false}>
-          {homeSlides.map((slide, index) => (
-            <Box
-              key={index}
-              sx={{
-                position: "relative",
-                height: { xs: "60vh", sm: "65vh", md: "75vh", lg: "80vh" },
-                overflow: "hidden",
-              }}
-            >
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage: `
-          linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%),
-          url(${slide.img})
-        `,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              />
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "40%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 3,
-                  width: "100%",
-                  textAlign: "start",
-                  padding: "0 16px",
-                  "@keyframes lineLoop": {
-                    "0%": {
-                      transform: "scaleX(0)",
-                      transformOrigin: "left",
-                    },
-                    "50%": {
-                      transform: "scaleX(0.5)",
-                      transformOrigin: "left",
-                    },
-                    "100%": {
-                      transform: "scaleX(0)",
-                      transformOrigin: "right",
-                    },
-                  },
-                }}
-              >
-                <Grid container>
-                  <Grid item xs={4} data-aos="fade-right">
-                    <Typography
-                      variant="h2"
-                      color="primary.lighter"
-                      sx={{
-                        position: "relative",
-                        "&::after": {
-                          content: '""',
-                          position: "absolute",
-                          left: 0,
-                          bottom: -8, // Adjust as needed to position the line
-                          width: "100%",
-                          height: 4, // Height of the line
-                          backgroundColor: "primary.main", // Color of the line
-                          animation: "lineLoop 2s infinite",
-                        },
-                      }}
-                    >
-                      {slide.title}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
-          ))}
-        </Carousel>
-      </Box>
+    <Container maxWidth="sm">
+      <Box mt={5} display="flex" flexDirection="column" gap={3}>
+        <Typography variant="h4" align="center">MOBI Token Transfer</Typography>
 
-      <Container maxWidth="xl">
-        <Grid
-          container
-          spacing={5}
-          mt={3}
-          sx={{
-            marginTop: { xs: "16px", sm: "24px", md: "32px" }, // Responsive margin-top
-            backgroundColor: "primary.lighter", // Optional: Background color
-            borderRadius: "20px", // Optional: Rounded corners
-          }}
-          p={2}
+        <Typography variant="body1" align="center">
+          Connected Wallet: {signerAddress ? `${signerAddress.substring(0, 6)}...${signerAddress.substring(signerAddress.length - 4)}` : "Not connected"}
+        </Typography>
+
+        {balance && (
+          <Typography variant="body1" align="center">
+            Current Balance: {balance} MOBI
+          </Typography>
+        )}
+
+        <TextField
+          label="Recipient Address"
+          value={recipient}
+          onChange={(e) => setRecipient(e.target.value)}
+          fullWidth
+          placeholder="0x..."
+        />
+
+        <TextField
+          label="Amount (MOBI)"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          fullWidth
+          type="number"
+          inputProps={{ min: "0", step: "0.000001" }}
+        />
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleTransfer}
+          disabled={loading || !recipient || !amount}
+          fullWidth
         >
-          <Grid
-            data-aos="fade-up"
-            item
-            xs={12}
-            textAlign="start"
-            justifyContent="start"
-            display="flex"
-            sx={{ position: "relative" }}
-          >
-            <Typography
-              color="black"
-              variant="h2"
-              sx={{
-                fontWeight: "600",
-                position: "relative",
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  left: { lg: "-70px", md: "-65px", sm: "-50px", xs: "-30px" },
-                  bottom: "-15px",
-                  width: "100%",
-                  height: "20px",
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 200 5' preserveAspectRatio='none'%3E%3Cpath d='M0,12 Q400,9 150,5 T200,9 T300,5' stroke='%230000FF' fill='none' stroke-width='1'/%3E%3C/svg%3E")`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "100% 100%",
-                },
-              }}
+          {loading ? <CircularProgress size={24} /> : "Transfer Tokens"}
+        </Button>
+
+        {error && <Alert severity="error">{error}</Alert>}
+        {txHash && (
+          <Alert severity="success">
+            Transaction Hash: {txHash.substring(0, 10)}...{txHash.substring(txHash.length - 8)}
+            <Button 
+              variant="text" 
+              size="small"
+              onClick={() => window.open(`https://polygonscan.com/tx/${txHash}`, '_blank')}
             >
-              Welcome to International{" "}
-              <Box component="span" sx={{ color: "primary.main" }}>
-                English
-              </Box>{" "}
-              Institute{" "}
-            </Typography>
-          </Grid>
-          <Grid
-            data-aos="fade-up"
-            item
-            mt={2}
-            xs={12}
-            md={12}
-            sm={12}
-            lg={6}
-            p={2}
-            textAlign="start"
-            justifyContent="start"
-            display="flex"
-          >
-            <Typography color="#757575" variant="h5" sx={{ fontWeight: "600" }}>
-              Our goal is to help Sri Lankan students improve their English
-              skills. English is essential for success, but many students find
-              it difficult to master, even after years of study. This is often
-              because they don’t get enough practice or aren’t in the right
-              environment to learn. We’ve created a course that focuses on
-              understanding and thinking in English, rather than just speaking,
-              reading, or writing. This makes us different from other programs.
-              Our young, international instructors bring fresh ideas and help
-              students connect with the world. Through our course, students will
-              not only become better at English but also gain confidence, create
-              new opportunities, and build global connections.
-            </Typography>
-          </Grid>
-          <Grid
-            data-aos="fade-up"
-            item
-            xs={12}
-            md={12}
-            lg={6}
-            mt={1}
-            sm={12}
-            p={2}
-            textAlign="start"
-            justifyContent="start"
-            display="flex"
-          >
-            <Carousel
-              animation="fade"
-              interval={3000}
-              indicators={false}
-              sx={{ width: "100%", height: "100%" }}
-            >
-              {HomeIntro.map((slide, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    width: "auto",
-                    height: "100%",
-                    position: "relative",
-                    overflow: "hidden",
-                    borderRadius: "8px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src={slide?.img}
-                    
-                    sx={{
-                      width: "auto",
-                      height: {
-                        xs: "40vh",
-                        sm: "35vh",
-                        md: "45vh",
-                        lg: "40vh",
-                      },
-                      objectFit: "cover",
-                    }}
-                  />
-                </Box>
-              ))}
-            </Carousel>
-          </Grid>
-        </Grid>
-        <Box mt={10}>
-          <Grid container>
-            <Grid
-              data-aos="fade-up"
-              item
-              xs={12}
-              md={8}
-              lg={3}
-              sm={8}
-              display="flex"
-              justifyContent="center"
-            >
-              <Typography
-                color="black"
-                variant="h3"
-                sx={{
-                  fontWeight: "600",
-                  position: "relative",
-                  "&::after": {
-                    content: '""',
-                    position: "absolute",
-                    left: {
-                      lg: "-20px",
-                      md: "-50px",
-                      sm: "-30px",
-                      xs: "-28px",
-                    },
-                    bottom: "-15px",
-                    width: "100%",
-                    height: "20px",
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 200 5' preserveAspectRatio='none'%3E%3Cpath d='M0,12 Q400,9 150,5 T200,9 T300,5' stroke='%230000FF' fill='none' stroke-width='1'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "100% 100%",
-                  },
-                }}
-              >
-                Our{""}
-                <Box component="span" sx={{ color: "primary.main" }}>
-                  &nbsp; Achievements
-                </Box>{" "}
-              </Typography>
-            </Grid>
-            <Grid
-              data-aos="fade-up"
-              item
-              display="flex"
-              justifyContent="center"
-              xs={12}
-              mt={8}
-            >
-              <QualityCard />
-            </Grid>
-          </Grid>
-        </Box>
-        <Box mt={10} p={3}>
-          <Grid container display="flex" justifyContent="center">
-            <Grid item xs={12}>
-              <Typography
-                color="black"
-                variant="h3"
-                sx={{
-                  fontWeight: "600",
-                  position: "relative",
-                  "&::after": {
-                    content: '""',
-                    position: "absolute",
-                    left: {
-                      lg: "-50px",
-                      md: "-50px",
-                      sm: "-50px",
-                      xs: "-28px",
-                    },
-                    bottom: "-15px",
-                    width: "50%",
-                    height: "20px",
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 200 5' preserveAspectRatio='none'%3E%3Cpath d='M0,12 Q400,9 150,5 T200,9 T300,5' stroke='%230000FF' fill='none' stroke-width='1'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "100% 100%",
-                  },
-                }}
-              >
-                What You’ll{" "}
-                <Box component="span" sx={{ color: "primary.main" }}>
-                  Achieve with Us
-                </Box>{" "}
-              </Typography>
-            </Grid>
-            <Grid item xs={10} mt={10}>
-              <BenifitsCard />
-            </Grid>
-          </Grid>
-        </Box>
-        <Grid
-          container
-          spacing={5}
-          mt={3}
-          sx={{
-            marginTop: { xs: "16px", sm: "24px", md: "32px" },
-            borderRadius: "20px",
-          }}
-          p={2}
-        >
-          <Grid
-            data-aos="fade-up"
-            item
-            xs={12}
-            lg={6}
-            md={12}
-            sm={12}
-            mt={2}
-            p={2}
-            display="flex"
-            justifyContent="start"
-            textAlign="start"
-          >
-            <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Carousel
-                animation="fade"
-                interval={3000}
-                indicators={false}
-                sx={{ width: "100%", height: "100%" }}
-              >
-                {homeSlides.map((slide, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      width: "auto",
-                      height: "100%",
-                      position: "relative",
-                      overflow: "hidden",
-                      borderRadius: "8px",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Box
-                      component="img"
-                      src={slide?.img}
-                      alt={slide.title}
-                      sx={{
-                        width: "auto",
-                        height: {
-                          xs: "40vh",
-                          sm: "35vh",
-                          md: "45vh",
-                          lg: "40vh",
-                        },
-                        objectFit: "cover",
-                      }}
-                    />
-                  </Box>
-                ))}
-              </Carousel>
-            </Box>
-          </Grid>
-          <Grid
-            data-aos="fade-up"
-            item
-            mt={2}
-            xs={12}
-            lg={6}
-            md={12}
-            sm={12}
-            p={2}
-            textAlign="start"
-            display="flex"
-            flexDirection="column"
-            justifyContent="start"
-          >
-            <Box mb={3}>
-              <Typography
-                color="black"
-                variant="h3"
-                sx={{
-                  fontWeight: "600",
-                  position: "relative",
-                }}
-              >
-                Why is English{" "}
-                <Box component="span" sx={{ color: "primary.main" }}>
-                  Important?
-                </Box>{" "}
-              </Typography>
-            </Box>
-            <Typography color="#757575" variant="h5" sx={{ fontWeight: "600" }}>
-              English is a global language that opens doors to countless
-              opportunities in education, careers, and communication worldwide.
-              For Sri Lankan students, mastering English is essential not only
-              for academic success but also for building confidence in a world
-              where English is the bridge for connecting with people from
-              different countries. By learning English, students in Sri Lanka
-              can access a wealth of knowledge, engage in international
-              dialogues, and pursue global careers, helping them to succeed both
-              locally and globally.
-            </Typography>
-          </Grid>
-        </Grid>
-      </Container>
-      <Box>
-        <Footer />
+              View on Etherscan
+            </Button>
+          </Alert>
+        )}
       </Box>
-    </>
+    </Container>
   );
-}
+};
 
-export default Home;
+export default TokenTransfer;
