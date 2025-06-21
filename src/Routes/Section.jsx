@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import { Outlet, useRoutes } from "react-router-dom";
-import Layout from "../Layout/Nav-Bar/Sidebar.jsx";
-import Home from "../Pages/Home/Home.jsx";
-import Dashboard from "../Pages/Dashboard/Dashboard.jsx";
+import ConstructionLayout from "../Layout/Nav-Bar/Layout.jsx";
+import Home from "../Pages/Home.jsx";
+import ComparisonPage from "../Components/Product Card/ComparisonPage.jsx";
+
 
 function Router() {
   const routes = useRoutes([
@@ -10,14 +11,22 @@ function Router() {
       path: "/",
       element: (
         
+          <ConstructionLayout>
           <Suspense>
             <Outlet />
           </Suspense>
+        </ConstructionLayout>
        
       ),
       children: [ 
-        { path: "/", element: <Home /> },
-        { path: "/batch-transfer", element: <Dashboard /> },
+        {
+          index: true, // This makes it the default route for "/"
+          element: <Home />
+        },
+        {
+          path: '/compare', // This makes it the default route for "/"
+          element: <ComparisonPage />
+        },
         
       ],
     },
