@@ -60,7 +60,8 @@ import {
   Groups as GroupsIcon,
 } from "@mui/icons-material";
 import { styled, alpha } from "@mui/material/styles";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import EnhancedCategoriesMenu from "../../Components/CategoryList/CategoryList";
 
 // Custom styled components with modern color theme
 const SearchWrapper = styled("div")(({ theme }) => ({
@@ -101,7 +102,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const TopBar = styled(Box)(({ theme }) => ({
-  backgroundColor: "#1a365d", // Deep navy blue
+  background: "linear-gradient(135deg, #1a365d 0%, #3a7bd5 100%)",
   color: "#fff",
   padding: theme.spacing(0.5, 0),
   fontSize: "0.875rem",
@@ -270,7 +271,7 @@ const ConstructionLayout = ({ children }) => {
               <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
                 <LocationIcon fontSize="small" />
                 <Typography variant="body2">
-                  Deliver to: <strong>New York, NY</strong>
+                  Deliver to: <strong>Colombo, LK</strong>
                 </Typography>
               </Box>
               <Box
@@ -282,7 +283,7 @@ const ConstructionLayout = ({ children }) => {
               >
                 <PhoneIcon fontSize="small" />
                 <Typography variant="body2">
-                  24/7 Support: 1-800-BUILD
+                  24/7 Support: <strong>+94 11 123 12 32</strong>
                 </Typography>
               </Box>
             </Box>
@@ -334,17 +335,68 @@ const ConstructionLayout = ({ children }) => {
             </LogoBox>
 
             {/* Categories Button - Desktop */}
+
             <Button
-              startIcon={<CategoryIcon />}
-              endIcon={<ArrowDownIcon />}
+              startIcon={
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "4px",
+                    width: "20px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      height: "2px",
+                      width: "100%",
+                      backgroundColor: "primary.main",
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      height: "2px",
+                      width: "100%",
+                      backgroundColor: "primary.main",
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      height: "2px",
+                      width: "100%",
+                      backgroundColor: "primary.main",
+                    }}
+                  />
+                </Box>
+              }
+              endIcon={<ArrowDownIcon color="primary" />}
               onClick={handleCategoriesOpen}
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
-                backgroundColor: "#34495e",
-                color: "white",
+                color: "primary.main",
+                textTransform: "none",
+                fontWeight: 600,
+                borderRadius: 1,
+                px: 3,
+                py: 1,
+                backgroundColor: "transparent",
+                boxShadow: "none",
+                transition: "all 0.2s ease",
                 "&:hover": {
-                  backgroundColor: "#2c3e50",
+                  color: "primary.dark",
+                  backgroundColor: "transparent",
+                  transform: "translateY(-1px)",
+                  boxShadow: "none",
+                  "& .MuiBox-root > div": {
+                    backgroundColor: "primary.dark",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "primary.dark",
+                  },
+                },
+                "&:active": {
+                  transform: "translateY(0)",
                 },
               }}
             >
@@ -411,7 +463,10 @@ const ConstructionLayout = ({ children }) => {
       </MainHeader>
 
       {/* Category Bar */}
-      <CategoryBar elevation={0}>
+      <CategoryBar
+        sx={{ background: "linear-gradient(135deg, #1a365d 0%, #3a7bd5 100%)" }}
+        elevation={0}
+      >
         <Container maxWidth="xl">
           <Tabs
             value={activeTab}
@@ -439,6 +494,8 @@ const ConstructionLayout = ({ children }) => {
               label="Home"
               icon={<ConstructionIcon fontSize="small" />}
               iconPosition="start"
+              component={Link}
+              to="/home"
             />
             <Tab
               label="Products"
@@ -460,7 +517,7 @@ const ConstructionLayout = ({ children }) => {
               icon={<CompareIcon fontSize="small" />}
               iconPosition="start"
               component={Link}
-            to="/compare"
+              to="/compare"
             />
             <Tab
               label="Bulk Orders"
@@ -488,7 +545,7 @@ const ConstructionLayout = ({ children }) => {
       </Drawer>
 
       {/* Categories Menu */}
-      <Menu
+      {/* <Menu
         anchorEl={categoriesAnchor}
         open={Boolean(categoriesAnchor)}
         onClose={handleCategoriesClose}
@@ -507,7 +564,13 @@ const ConstructionLayout = ({ children }) => {
             />
           </MenuItem>
         ))}
-      </Menu>
+      </Menu> */}
+
+      <EnhancedCategoriesMenu
+        anchorEl={categoriesAnchor}
+        open={Boolean(categoriesAnchor)}
+        onClose={handleCategoriesClose}
+      />
 
       {/* User Menu */}
       <Menu
@@ -681,8 +744,8 @@ const ConstructionLayout = ({ children }) => {
           </Grid>
           <Divider sx={{ my: 3, borderColor: "rgba(255,255,255,0.2)" }} />
           <Typography variant="body2" align="center">
-            © 2024 BuildMart. All rights reserved. Serving the construction
-            industry since 2024.
+            © 2025 BuildMart. All rights reserved. Serving the construction
+            industry since 2025.
           </Typography>
         </Container>
       </Box>

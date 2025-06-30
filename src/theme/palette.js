@@ -6,68 +6,68 @@ import { alpha } from '@mui/material/styles';
 
 export const grey = {
   0: '#FFFFFF',
-  100: '#F9FAFB',
-  200: '#F4F6F8',
-  300: '#DFE3E8',
-  400: '#C4CDD5',
-  500: '#919EAB',
-  600: '#637381',
-  700: '#454F5B',
-  800: '#212B36',
-  900: '#161C24',
+  100: '#F5F7FA',
+  200: '#EAEEF3',
+  300: '#D5DAE2',
+  400: '#A3AEBF',
+  500: '#6B778C',
+  600: '#4A5568',
+  700: '#2D3748',
+  800: '#1A202C',
+  900: '#171923',
 };
 
 export const primary = {
-  lighter: '#F4FAFF',
-  light: '#C1E3FF',
-  main: '#309BFD',
-  dark: '#0C44AE',
-  darker: '#022438',
+  lighter: '#EBF5FF',
+  light: '#90CDF4',
+  main: '#3182CE',  // Construction blue - strong and professional
+  dark: '#2C5282',
+  darker: '#1A365D',
   contrastText: '#FFFFFF',
 };
 
 export const secondary = {
-  lighter: '#EFD6FF',
-  light: '#C684FF',
-  main: '#8E33FF',
-  dark: '#5119B7',
-  darker: '#27097A',
+  lighter: '#FFF5E6',
+  light: '#F6AD55',  // Construction orange - for accents
+  main: '#DD6B20',   // Safety orange tone
+  dark: '#9C4221',
+  darker: '#652B19',
   contrastText: '#FFFFFF',
 };
 
 export const info = {
-  lighter: '#CAFDF5',
-  light: '#61F3F3',
-  main: '#00B8D9',
-  dark: '#006C9C',
-  darker: '#003768',
+  lighter: '#EBF8FF',
+  light: '#63B3ED',
+  main: '#4299E1',   // Bright blue for information
+  dark: '#3182CE',
+  darker: '#2B6CB0',
   contrastText: '#FFFFFF',
 };
 
 export const success = {
-  lighter: '#C8FAD6',
-  light: '#5BE49B',
-  main: '#00A76F',
-  dark: '#007867',
-  darker: '#004B50',
+  lighter: '#F0FFF4',
+  light: '#68D391',  // Fresh green for success
+  main: '#38A169',   // Nature/construction green
+  dark: '#2F855A',
+  darker: '#276749',
   contrastText: '#FFFFFF',
 };
 
 export const warning = {
-  lighter: '#FFF5CC',
-  light: '#FFD666',
-  main: '#FFAB00',
-  dark: '#B76E00',
-  darker: '#7A4100',
+  lighter: '#FFFAF0',
+  light: '#F6AD55',  // Caution yellow-orange
+  main: '#ED8936',   // Warning orange
+  dark: '#DD6B20',
+  darker: '#C05621',
   contrastText: grey[800],
 };
 
 export const error = {
-  lighter: '#FFE9D5',
-  light: '#FFAC82',
-  main: '#FF5630',
-  dark: '#B71D18',
-  darker: '#7A0916',
+  lighter: '#FFF5F5',
+  light: '#FC8181',  // Alert red
+  main: '#E53E3E',   // Danger red
+  dark: '#C53030',
+  darker: '#9B2C2C',
   contrastText: '#FFFFFF',
 };
 
@@ -76,12 +76,21 @@ export const common = {
   white: '#FFFFFF',
 };
 
+// Construction-specific colors
+export const construction = {
+  cement: '#F5F5F5',       // Light cement color
+  concrete: '#A3A3A3',     // Medium concrete
+  steel: '#4A5568',        // Steel gray
+  safetyYellow: '#FFD700', // Safety yellow
+  safetyRed: '#FF0000',    // Safety red
+};
+
 export const action = {
   hover: alpha(grey[500], 0.08),
-  selected: alpha(grey[500], 0.16),
+  selected: alpha(primary.main, 0.16),  // Use primary color for selection
   disabled: alpha(grey[500], 0.8),
   disabledBackground: alpha(grey[500], 0.24),
-  focus: alpha(grey[500], 0.24),
+  focus: alpha(primary.main, 0.24),     // Use primary color for focus
   hoverOpacity: 0.08,
   disabledOpacity: 0.48,
 };
@@ -95,6 +104,7 @@ const base = {
   error,
   grey,
   common,
+  construction, // Added construction-specific colors
   divider: alpha(grey[500], 0.2),
   action,
 };
@@ -117,7 +127,7 @@ export function palette() {
     },
     action: {
       ...base.action,
-      active: grey[600],
+      active: primary.main, // Use primary color for active states
     },
   };
 }

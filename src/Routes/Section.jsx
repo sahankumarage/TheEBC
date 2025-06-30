@@ -20,6 +20,7 @@ function Router() {
       ),
       children: [ 
         {
+           path: '/home',
           index: true, // This makes it the default route for "/"
           element: <Home />
         },
